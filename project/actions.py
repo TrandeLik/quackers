@@ -30,7 +30,7 @@ def update_score():
         person.update_score(k)
     db.session.add(person)
     db.session.commit()
-    return 'Ok'
+    return 'OK'
 
 
 if __name__ == '__main__':
