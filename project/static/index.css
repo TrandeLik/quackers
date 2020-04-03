@@ -1,0 +1,16 @@
+body{
+    background: #00FFFF;
+    height: 100vh;
+}
+.duck-button{
+    background: #00FFFF;
+    margin-top: 10vh;
+    border: none;
+    outline: none;
+
+}
+
+.duck-button:focus{
+    border: none;
+    outline: none;
+}
