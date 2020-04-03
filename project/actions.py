@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for
+from flask import request, jsonify, redirect, url_for
 from . import app
 from project.db import db, User
 import jinja2
@@ -16,6 +16,15 @@ def render(template, **params):
 @app.route('/')
 def hello_world():
     return render('index.html')
+
+
+@app.route('/get_leaderboard', methods=['GET'])
+def get_leaderboard():
+    req = User.query.all()
+    res = []
+    for user in req:
+        res.append(tuple([user.nickname, user.score]))
+    return dict(res)
 
 
 @app.route('/update_score', methods=['POST'])
