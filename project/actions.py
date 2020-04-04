@@ -1,6 +1,6 @@
 from flask import request, jsonify, redirect, url_for
 from . import app
-from project.db import db, User
+from project.db import db, User, Question
 import jinja2
 import os
 
@@ -31,7 +31,7 @@ def get_leaderboard():
 def update_score():
     nick = eval(request.data)['nickname']
     k = 1
-    person = User.query.filter_by(nickname=nick).first()
+    person = User.query.get(nick)
     if person:
         person.update_score(k)
     else:
@@ -40,6 +40,36 @@ def update_score():
     db.session.add(person)
     db.session.commit()
     return 'OK'
+
+
+@app.route('/check_answer', methods=['POST'])
+def check_answer():
+    nickname = eval(request.data)['nickname']
+    question_text = eval(request.data)['question']
+    answer = eval(request.data)['answer']
+    question = Question.query.get(question_text)
+    user = User.query.get(nickname)
+    if question.answer == answer:
+        user.questions.append(question)
+        db.session.add(user)
+        db.session.commit()
+        return 'OK'
+    else:
+        return 'ERROR'
+
+
+@app.route('/questions', methods=['GET'])
+def questions():
+    nickname = request.args.get('nickname')
+    user = User.query.get(nickname)
+    qs = Question.query.all()
+    d = dict()
+    for q in qs:
+        if q in user.questions:
+            d[q.text] = True
+        else:
+            d[q.text] = False
+    return d
 
 
 if __name__ == '__main__':
