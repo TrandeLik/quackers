@@ -1,6 +1,7 @@
 var i;
 const btn = document.getElementById('button');
 const nickInput = document.getElementById('nickname');
+const select = document.getElementById('slct');
 
 
 function createTable(dataDict){
@@ -54,9 +55,35 @@ function generate(){
         })
 }
 
+function drawQuestions(allQuestions) {
+    let questions = [];
+    select.innerHTML = '';
+    for (let question in allQuestions){
+        if (!allQuestions[question]){
+            select.innerHTML += `<option>${question}</option>`
+        } else {
+            select.innerHTML += `<option disabled>${question}</option>`
+        }
+    }
+    console.log(allQuestions);
+    console.log(questions)
+}
+
+function getQuestions(){
+    axios.get(`/questions?nickname=${nickInput.value}`)
+        .then(response => {
+            drawQuestions(response.data);
+        });
+}
+
 window.onload = function () {
     i = 0;
     generate();
+    getQuestions();
+};
+
+nickInput.onchange = function(){
+    getQuestions();
 };
 
 btn.onclick = function () {

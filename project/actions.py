@@ -65,12 +65,8 @@ def questions():
     qs = Question.query.all()
     d = dict()
     for q in qs:
-        if q in user.questions:
+        if user and (q in user.questions):
             d[q.text] = True
         else:
             d[q.text] = False
     return d
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

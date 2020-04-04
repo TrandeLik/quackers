@@ -26,6 +26,7 @@ class User(db.Model):
     def update_score(self, delta):
         self.score += delta
 
+
 class Question(db.Model):
     text = db.Column(db.String(1000), primary_key=True)
     answer = db.Column(db.String(20), nullable=False)
