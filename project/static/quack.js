@@ -2,7 +2,8 @@ var i;
 const btn = document.getElementById('button');
 const nickInput = document.getElementById('nickname');
 const select = document.getElementById('slct');
-
+const btnSend = document.getElementById('sendAnswer');
+const usersAnswer = document.getElementById('answer');
 
 function createTable(dataDict){
     let data = [];
@@ -56,8 +57,7 @@ function generate(){
 }
 
 function drawQuestions(allQuestions) {
-    let questions = [];
-    select.innerHTML = '';
+    select.innerHTML = '<option selected disabled>Список вопросов</option>';
     for (let question in allQuestions){
         if (!allQuestions[question]){
             select.innerHTML += `<option>${question}</option>`
@@ -65,8 +65,6 @@ function drawQuestions(allQuestions) {
             select.innerHTML += `<option disabled>${question}</option>`
         }
     }
-    console.log(allQuestions);
-    console.log(questions)
 }
 
 function getQuestions(){
@@ -76,14 +74,18 @@ function getQuestions(){
         });
 }
 
-window.onload = function () {
-    i = 0;
+function updateAll(){
     generate();
     getQuestions();
+}
+
+window.onload = function () {
+    i = 0;
+    updateAll()
 };
 
 nickInput.onchange = function(){
-    getQuestions();
+    updateAll()
 };
 
 btn.onclick = function () {
@@ -91,14 +93,29 @@ btn.onclick = function () {
     audio.src = '/static/sounds/quack.mp3';
     audio.play();
     i += 1;
-    nick = nickInput.value;
-    generate();
+    let nick = nickInput.value;
     if (nick !== '') {
-        if (i % 1 === 0) {
-            axios.post('/update_score', {nickname: nick})
+        if (i % 10 === 0) {
+            axios.post('/update_score', {nickname: nick, iter: i})
                 .then(response => {
                     console.log(response.data)
                 })
         }
     }
+    updateAll();
+};
+
+btnSend.onclick = function () {
+  let nick = nickInput.value;
+  let ans = usersAnswer.value;
+  let quest = select.value;
+  console.log(quest);
+  if (nick !== ''){
+      axios.post('/check_answer', {nickname: nick, question: quest, answer: ans})
+          .then(response =>{
+              updateAll();
+              usersAnswer.value = '';
+          })
+  }
+
 };

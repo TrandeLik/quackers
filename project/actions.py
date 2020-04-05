@@ -30,13 +30,15 @@ def get_leaderboard():
 @app.route('/update_score', methods=['POST'])
 def update_score():
     nick = eval(request.data)['nickname']
-    k = 1
+    ite = eval(request.data)['iter']
+    k = 10
     person = User.query.get(nick)
-    if person:
-        person.update_score(k)
-    else:
-        person = User(nick)
-        person.update_score(k)
+    if ite % 10 == 0:
+        if person:
+            person.update_score(k)
+        else:
+            person = User(nick)
+            person.update_score(k)
     db.session.add(person)
     db.session.commit()
     return 'OK'
@@ -49,10 +51,10 @@ def check_answer():
     answer = eval(request.data)['answer']
     question = Question.query.get(question_text)
     user = User.query.get(nickname)
-    if question not in user.questions:
+    if question and user and (question not in user.questions):
         if question.answer == answer:
             user.questions.append(question)
-            user.score += question.score
+            user.update_score(question.score)
             db.session.add(user)
             db.session.commit()
             return 'OK'
