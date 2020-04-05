@@ -49,13 +49,17 @@ def check_answer():
     answer = eval(request.data)['answer']
     question = Question.query.get(question_text)
     user = User.query.get(nickname)
-    if question.answer == answer:
-        user.questions.append(question)
-        db.session.add(user)
-        db.session.commit()
-        return 'OK'
+    if question not in user.questions:
+        if question.answer == answer:
+            user.questions.append(question)
+            user.score += question.score
+            db.session.add(user)
+            db.session.commit()
+            return 'OK'
+        else:
+            return 'ERROR'
     else:
-        return 'ERROR'
+        return 'ANSWERED'
 
 
 @app.route('/questions', methods=['GET'])

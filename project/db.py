@@ -5,8 +5,8 @@ from . import app
 db = SQLAlchemy(app)
 
 questions = db.Table('questions',
-    db.Column('question_id', db.Integer, db.ForeignKey('question.text'), primary_key=True),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.nickname'), primary_key=True)
+    db.Column('question_id', db.String(80), db.ForeignKey('question.text'), primary_key=True),
+    db.Column('user_id', db.String(1000), db.ForeignKey('user.nickname'), primary_key=True)
 )
 
 
