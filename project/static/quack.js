@@ -15,9 +15,9 @@ function createTable(dataDict){
     table.innerHTML = `
         <thead>
         <tr>
-            <th class="table-secondary">Место</th>
-            <th class="table-secondary">Ник</th>
-            <th class="table-secondary">Счет</th>
+            <th class="leaderboard">Место</th>
+            <th class="leaderboard">Ник</th>
+            <th class="leaderboard">Счет</th>
         </tr>
         </thead>
         <tbody>
@@ -27,16 +27,16 @@ function createTable(dataDict){
         let rowClass = '';
         switch (j) {
             case 0:
-                rowClass = 'table-warning';
+                rowClass = 'first-place';
                 break;
             case 1:
-                rowClass = 'table-success';
+                rowClass = 'second-place';
                 break;
             case 2:
-                rowClass = 'table-primary';
+                rowClass = 'third-place';
                 break;
             default:
-                rowClass = 'table-secondary';
+                rowClass = 'leaderboard';
         }
         table.innerHTML += `
             <tr>
@@ -90,9 +90,66 @@ nickInput.onchange = function(){
 
 btn.onclick = function () {
     let audio = new Audio();
-    audio.src = '/static/sounds/quack.mp3';
-    audio.play();
+    let music = '';
     i += 1;
+    switch (i) {
+        case 69:
+            music = '/static/sounds/were all soldiers.mp3';
+            break;
+
+        case 256:
+            music = '/static/sounds/8_bit.mp3';
+            break;
+
+        case 128:
+            music = '/static/sounds/lenin.mp3';
+            break;
+
+        case 300:
+            music = '/static/sounds/ba-dum-tss.mp3';
+            break;
+
+        case 500:
+            music = '/static/sounds/hrushev1.mp3';
+            break;
+
+        case 609:
+            music = '/static/sounds/Boy next door.mp3';
+            break;
+
+        case 666:
+            music = '/static/sounds/alalalalalalala.mp3';
+            break;
+
+        case 750:
+            music = '/static/sounds/gorbachev.mp3';
+            break;
+
+        case 1204:
+            music = '/static/sounds/gagarin.mp3';
+            break;
+
+        case 2020:
+            music = '/static/sounds/coronavirus.mp3';
+            break;
+
+        case 2505:
+            alert('Вы умерли!');
+            break;
+
+        case 5000:
+            music = '/static/sounds/everyone is counting on me.mp3';
+            break;
+
+        case 6969:
+            music = '/static/sounds/gachi_barbariki.mp3';
+            break;
+
+        default:
+            music = '/static/sounds/quack.mp3';
+    }
+    audio.src = music;
+    audio.play();
     let nick = nickInput.value;
     if (nick !== '') {
         if (i % 10 === 0) {

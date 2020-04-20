@@ -1,16 +1,55 @@
 body{
-    background: #00FFFF;
+    background: #7deddd;
     height: 100vh;
 }
 .duck-button{
-    background: #00FFFF;
+    background: #7deddd;
     margin-top: 10vh;
     border: none;
     outline: none;
+}
 
+.first-place{
+    background: #f7cc1f;
+}
+
+.second-place{
+    background: #96a19f;
+}
+
+.third-place{
+    background: #ee7f2a;
+}
+
+.btn-primary:hover{
+    background: #6077be;
+    border-color: #6077be;
+}
+
+.form-control{
+    background: #d9f4f0;
+    border-color: #d9f4f0;
+}
+
+.form-control:focus{
+    background: #d9f4f0;
+}
+
+.leaderboard{
+    background: #d9f4f0;
+}
+
+.btn-primary{
+    background: #728ee2;
+    border-color: #728ee2;
 }
 
 .duck-button:focus{
     border: none;
     outline: none;
+}
+
+.card{
+    background: #d9f4f0;
+    border-color: #d9f4f0;
 }

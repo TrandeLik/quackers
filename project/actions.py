@@ -52,7 +52,7 @@ def check_answer():
     question = Question.query.get(question_text)
     user = User.query.get(nickname)
     if question and user and (question not in user.questions):
-        if question.answer == answer:
+        if question.answer.lower() == answer.lower():
             user.questions.append(question)
             user.update_score(question.score)
             db.session.add(user)
