@@ -51,7 +51,9 @@ def check_answer():
     answer = eval(request.data)['answer']
     question = Question.query.get(question_text)
     user = User.query.get(nickname)
-    if question and user and (question not in user.questions):
+    if not user:
+        user = User(nickname=nickname)
+    if question and (question not in user.questions):
         if question.answer.lower() == answer.lower():
             user.questions.append(question)
             user.update_score(question.score)
@@ -76,3 +78,16 @@ def questions():
         else:
             d[q.text] = False
     return d
+
+@app.route('/null_score', methods=['GET'])
+def null_score():
+    fee = 100
+    nickname = request.args.get('nickname')
+    user = User.query.get(nickname)
+    if user.score>=fee:
+        user.score-=fee
+        db.session.add(user)
+        db.session.commit()
+        return True
+    else:
+        return False

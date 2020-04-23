@@ -94,55 +94,59 @@ btn.onclick = function () {
     i += 1;
     switch (i) {
         case 69:
-            music = '/static/sounds/were all soldiers.mp3';
+            music = '/static/sounds/1.mp3';
             break;
 
         case 256:
-            music = '/static/sounds/8_bit.mp3';
+            music = '/static/sounds/3.mp3';
             break;
 
         case 128:
-            music = '/static/sounds/lenin.mp3';
+            music = '/static/sounds/2.mp3';
             break;
 
         case 300:
-            music = '/static/sounds/ba-dum-tss.mp3';
+            music = '/static/sounds/4.mp3';
             break;
 
         case 500:
-            music = '/static/sounds/hrushev1.mp3';
+            music = '/static/sounds/5.mp3';
             break;
 
         case 609:
-            music = '/static/sounds/Boy next door.mp3';
+            music = '/static/sounds/6.mp3';
             break;
 
         case 666:
-            music = '/static/sounds/alalalalalalala.mp3';
+            music = '/static/sounds/7.mp3';
             break;
 
         case 750:
-            music = '/static/sounds/gorbachev.mp3';
+            music = '/static/sounds/8.mp3';
             break;
 
         case 1204:
-            music = '/static/sounds/gagarin.mp3';
+            music = '/static/sounds/9.mp3';
             break;
 
         case 2020:
-            music = '/static/sounds/coronavirus.mp3';
+            music = '/static/sounds/10.mp3';
             break;
 
         case 2505:
             alert('Вы умерли!');
             break;
 
+        case 2506:
+            music = '/static/sounds/13.mp3';
+            break;
+
         case 5000:
-            music = '/static/sounds/everyone is counting on me.mp3';
+            music = '/static/sounds/11.mp3';
             break;
 
         case 6969:
-            music = '/static/sounds/gachi_barbariki.mp3';
+            music = '/static/sounds/12.mp3';
             break;
 
         default:
