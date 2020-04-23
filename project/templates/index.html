@@ -7,13 +7,17 @@
 </head>
 <body>
     <div class="container">
+        <h1 id="currentScore"></h1>
+        <a id="top"></a>
         <div class="offset-md-2 col-md-8 col-12">
             <button id="button" class="duck-button col-12">
                 <img class="col-12" src="../static/images/duck.png" alt="Quack!">
             </button><br><br>
             <input type="text" id='nickname' class="form-control" placeholder="Ник для лидерборда">
             <br>
-            <button class="btn btn-primary col-12">Выбрать ник</button>
+            <button class="btn btn-primary col-12" id="selectNick">Выбрать ник</button>
+            <br><br>
+            <a class="btn btn-primary col-12" href="#questionsAndRules">Список вопросов и правила</a>
             <br><br>
             <table id="tbl" class="col-12 table table-stripped"></table>
             <br><br>
@@ -36,12 +40,39 @@
                         <br><h6 class="card-subtitle mb-2 text-muted">Спасибо, что прочитал, а то у меня забрали камень и заставили это написать :(</h6><br>
                 </div>
             </div>
+            <a id="questionsAndRules"></a>
+            <br>
+            <a href="#top" class="btn btn-primary col-12">Наверх!</a>
             <br><br>
         </div>
     </div>
+
+<!-- Modal -->
+<div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Импортант информейшн, честно</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="infoForAlert">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
 </body>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="../static/index.css">
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="../static/quack.js"></script>
 </html>

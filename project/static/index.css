@@ -21,6 +21,16 @@ body{
     background: #ee7f2a;
 }
 
+.btn-primary:not(:disabled):not(.disabled):active{
+    background: #6077be;
+    border-color: #6077be;
+}
+
+.btn-primary:focus{
+    background: #6077be;
+    border-color: #6077be;
+}
+
 .btn-primary:hover{
     background: #6077be;
     border-color: #6077be;
@@ -52,4 +62,13 @@ body{
 .card{
     background: #d9f4f0;
     border-color: #d9f4f0;
+}
+
+.modal-content{
+    background: #d9f4f0;
+    border-color: #d9f4f0;
+}
+
+html {
+    scroll-behavior: smooth;
 }

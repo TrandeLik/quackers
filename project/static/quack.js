@@ -4,6 +4,8 @@ const nickInput = document.getElementById('nickname');
 const select = document.getElementById('slct');
 const btnSend = document.getElementById('sendAnswer');
 const usersAnswer = document.getElementById('answer');
+const info  = document.getElementById('infoForAlert');
+const currentScore  = document.getElementById('currentScore');
 
 function createTable(dataDict){
     let data = [];
@@ -77,6 +79,7 @@ function getQuestions(){
 function updateAll(){
     generate();
     getQuestions();
+    currentScore.innerText = `Текущий счет: ${i}`;
 }
 
 window.onload = function () {
@@ -174,7 +177,19 @@ btnSend.onclick = function () {
   if (nick !== ''){
       axios.post('/check_answer', {nickname: nick, question: quest, answer: ans})
           .then(response =>{
+              switch (response.data) {
+                  case 'ANSWERED':
+                      info.innerText = 'Жулик, не воруй! Ты уже ответил(а) на этот вопрос!';
+                      break;
+                  case 'OK':
+                      info.innerText = 'ЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ! Правильно!';
+                      break;
+                  case 'ERROR':
+                      info.innerText = 'Пока неверно, но мы в тебя еще верим';
+                      break;
+              }
               updateAll();
+              $('#alert').modal('show');
               usersAnswer.value = '';
           })
   }
