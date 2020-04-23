@@ -1,4 +1,5 @@
 var i;
+var userDict;
 const btn = document.getElementById('button');
 const nickInput = document.getElementById('nickname');
 const select = document.getElementById('slct');
@@ -54,7 +55,8 @@ function createTable(dataDict){
 function generate(){
     axios.get('/get_leaderboard')
         .then(response => {
-            createTable(response.data)
+            userDict = response.data
+            createTable(userDict)
         })
 }
 
@@ -84,17 +86,23 @@ function updateAll(){
 
 window.onload = function () {
     i = 0;
-    updateAll()
+    updateAll();
 };
 
 nickInput.onchange = function(){
-    updateAll()
+    let nickname = this.value;
+    if (Object.keys(userDict).indexOf(nickname) != -1){
+        i = userDict[nickname];
+    }
+    updateAll();
 };
 
 btn.onclick = function () {
     let audio = new Audio();
     let music = '';
     i += 1;
+    console.log('out')
+    console.log(i);
     switch (i) {
         case 69:
             music = '/static/sounds/1.mp3';
@@ -159,7 +167,10 @@ btn.onclick = function () {
     audio.play();
     let nick = nickInput.value;
     if (nick !== '') {
-        if (i % 10 === 0) {
+
+        if (i % 10 == 0) {
+            console.log('inside');
+            console.log(i);
             axios.post('/update_score', {nickname: nick, iter: i})
                 .then(response => {
                     console.log(response.data)
