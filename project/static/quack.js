@@ -101,7 +101,7 @@ btn.onclick = function () {
     let audio = new Audio();
     let music = '';
     i += 1;
-    console.log('out')
+    console.log('out');
     console.log(i);
     switch (i) {
         case 69:
