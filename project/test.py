@@ -1,2 +1,5 @@
 from project.db import db, User, Question
-print(User.query.all())
+question = Question(text='Кря?', answer='Quack', score=1000000)
+db.session.add(question)
+db.session.commit()
+print(Question.query.all())
