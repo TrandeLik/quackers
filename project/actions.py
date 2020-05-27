@@ -70,13 +70,14 @@ def check_answer():
 def questions():
     nickname = request.args.get('nickname')
     user = User.query.get(nickname)
-    qs = Question.query.all()
+    qs = Question.query.order_by(Question.score.asc()).all()
     d = dict()
     for q in qs:
         if user and (q in user.questions):
             d[q.text] = True
         else:
             d[q.text] = False
+    print(d)
     return d
 
 
