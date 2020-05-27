@@ -1,6 +1,6 @@
 from flask import request, jsonify, redirect, url_for
-from . import app
-from project.db import db, User, Question
+from __init__ import app
+from db import db, User, Question
 import jinja2
 import os
 

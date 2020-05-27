@@ -1,2 +1,2 @@
-from project.db import db
+from db import db
 db.create_all()

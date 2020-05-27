@@ -90,10 +90,6 @@ window.onload = function () {
 };
 
 nickInput.onchange = function(){
-    let nickname = this.value;
-    if (Object.keys(userDict).indexOf(nickname) != -1){
-        i = userDict[nickname];
-    }
     updateAll();
 };
 
